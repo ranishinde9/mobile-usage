@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}About Us{% endblock %}
+
+{% block body_class %}about-us{% endblock %}
+{% block content %}
+
+<!-- About Us Section -->
+<div style="font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; color: white; padding-bottom: 120px;"> <!-- Extra padding for footer -->
+    <h2 style="font-size: 2rem; color: white; margin-top: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px;">Our Mission</h2>
+    <p>At Mobile Usage Insights, we strive to provide users with deep insights into their mobile usage patterns. Our goal is to help people understand how their behavior affects device performance and to promote smarter usage habits. Through data-driven insights, we aim to improve user experience, optimize battery life, and enhance overall app usage efficiency. We believe that informed users make better decisions when it comes to their digital wellbeing.</p>
+
+    <h2 style="font-size: 2rem; color: white; margin-top: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px;">Our Team</h2>
+    <!-- Flexbox Container for Team Members -->
+    <div style="display: flex; justify-content: space-between; gap: 20px; flex-wrap: nowrap; margin-bottom: 40px;">
+        <!-- Team Member 1 -->
+        <div style="width: 22%; text-align: center; background-color: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 10px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);">
+            <img src="{{ url_for('static', filename='images/bhoomi.jpg') }}" alt="Bhoomi"
+                style="width: 100%; max-width: 250px; height: 250px; object-fit: cover; border-radius: 50%; border: 4px solid #3498db; margin-bottom: 15px;">
+            <h3 style="font-size: 1.2rem; color: #34495e; margin-top: 10px;">Bhoomika P Desai </h3>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div style="width: 22%; text-align: center; background-color: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 10px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);">
+            <img src="{{ url_for('static', filename='images/rani.jpg') }}" alt="Rani"
+                style="width: 100%; max-width: 250px; height: 250px; object-fit: cover; border-radius: 50%; border: 4px solid #3498db; margin-bottom: 15px;">
+            <h3 style="font-size: 1.2rem; color: #34495e; margin-top: 10px;">Rani Shinde</h3>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div style="width: 22%; text-align: center; background-color: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 10px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);">
+            <img src="{{ url_for('static', filename='images/rakshi1.jpg') }}" alt="Rakshitha"
+                style="width: 100%; max-width: 250px; height: 250px; object-fit: cover; object-position: top; border-radius: 50%; border: 4px solid #3498db; margin-bottom: 15px;">
+            <h3 style="font-size: 1.2rem; color: #34495e; margin-top: 10px;">Rakshitha Subramanya</h3>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div style="width: 22%; text-align: center; background-color: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 10px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);">
+            <img src="{{ url_for('static', filename='images/sanjay.jpg') }}" alt="Sanjay"
+                style="width: 100%; max-width: 250px; height: 250px; object-fit: cover; border-radius: 50%; border: 4px solid #3498db; margin-bottom: 15px;">
+            <h3 style="font-size: 1.2rem; color: #34495e; margin-top: 10px;">Sanjay S</h3>
+        </div>
+    </div>
+
+    <h2 style="font-size: 2rem; color: white; margin-top: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px;">Why Mobile Usage Insights?</h2>
+    <p>In today's mobile-driven world, understanding how we use our devices is crucial. Mobile Usage Insights empowers individuals by giving them the tools and knowledge to analyze their habits. Our platform takes privacy seriously and ensures that all data shared is handled securely, allowing you to gain valuable insights without compromising your personal information.</p>
+
+    <h2 style="font-size: 2rem; color: white; margin-top: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px;">Contact Us</h2>
+    <div style="margin-top: 20px; padding: 20px; background-color: rgba(255, 255, 255, 0.9); border-radius: 8px;">
+        <p style="font-size: 1rem; color: #333;"><strong>Email:</strong> support@mindfulscreens.com</p>
+        <p style="font-size: 1rem; color: #333;"><strong>Phone:</strong> +91 22 12345678</p>
+        <p style="font-size: 1rem; color: #333;"><strong>Address:</strong> 21, Silver Line JP Nagar 7th Phase Bangalore 560078</p>
+    </div>
+
+    <h3 style="font-size: 1.5rem; color: white; margin-top: 20px;">Our Social Media</h3>
+    <p>Follow us on social media for the latest updates and insights:</p>
+    <div style="font-size: 1rem; color: white;">
+        <p><strong>Facebook:</strong> Mobile Usage Insights</p>
+        <p><strong>Twitter:</strong> @MobileUsageInsights</p>
+        <p><strong>LinkedIn:</strong> Mobile Usage Insights</p>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover mobile usage and user behavior insights with our platform. Explore data, charts, and analytics for better decision-making.">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Mindful Screens{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-DfZBP3CX5fWmQwF80MYIAR0oGKVnxQ2bbDchSwYmeEqWo6q6KIENjdxJKHStsd6p" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Additional Template-Specific CSS -->
+    {% block styles %}{% endblock %}
+</head>
+
+<body>
+    <!-- Full Page Background Image -->
+    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;">
+        <img src="{{ url_for('static', filename='images/11.png') }}" alt="Background Image"
+            style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between p-3">
+        <div class="navbar-brand" style="font-size: 1.5rem; font-weight: bold; color: white;">Mindful Screens</div>
+        <div class="navbar-links">
+            <a href="/" class="navbar-item {% if request.path == '/' %}active{% endif %}">Home</a>
+            <a href="/help" class="navbar-item {% if request.path == '/help' %}active{% endif %}">Help</a>
+            <a href="/add_data" class="navbar-item {% if request.path == '/add_data' %}active{% endif %}">Add Data</a>
+            <a href="/graphs" class="navbar-item {% if request.path == '/graphs' %}active{% endif %}">Visual Insights</a>
+            <a href="/explore" class="navbar-item {% if request.path == '/explore' %}active{% endif %}">Explore</a>
+            <a href="/about_us" class="navbar-item {% if request.path == '/about_us' %}active{% endif %}">About Us</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content container mt-4">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="custom-footer text-white text-center py-3">
+        {% block footer %}
+        <p>&copy; 2024 Mobile Insights | All Rights Reserved</p>
+        {% endblock %}
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-7VP0D9X4LqIAV7FpYkFkWB2hIkH5GxB/c12UwMfIqJ9pTcqZZKJnhNzjHLr6KdnW" crossorigin="anonymous"></script>
+</body>
+
+</html>

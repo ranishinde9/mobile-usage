@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block title %}Enter Mobile Device Data{% endblock %}
+
+{% block body_class %}Add-Data{% endblock %}
+
+{% block content %}
+    <!-- Internal CSS for Add Data Page with Pink Color Scheme -->
+    <style>
+        /* Add custom styles for the Add Data page with pink color theme */
+        .Add-Data {
+            background-color: #fdf2f7; /* Light pink background color */
+            padding-top: 30px;
+        }
+
+        /* Container for the form */
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-top: 20px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Header for the form */
+        .form-header h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #d5006d; /* Dark pink color */
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* Style for the form labels */
+        .form-label {
+            font-weight: 600;
+            color: #d5006d; /* Dark pink for labels */
+            margin-bottom: 5px;
+        }
+
+        /* Form input fields */
+        .form-control {
+            border-radius: 8px;
+            box-shadow: none;
+            margin-bottom: 15px;
+            border: 2px solid #f06292; /* Light pink border */
+            padding: 12px;
+        }
+
+        /* Make the form elements responsive */
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Adds space between columns */
+        }
+
+        /* Create columns for the form */
+        .col-md-6 {
+            flex: 0 0 48%;
+            max-width: 48%;
+        }
+
+        @media (max-width: 767px) {
+            .col-md-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+
+        /* Style the submit button */
+        .submit-button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .submit-button-container button {
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            background-color: #f06292; /* Pink button */
+            color: white;
+            border: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .submit-button-container button:hover {
+            background-color: #d5006d; /* Darker pink on hover */
+            transform: scale(1.05); /* Slightly grow the button */
+        }
+
+        /* Invalid feedback style */
+        .invalid-feedback {
+            font-size: 0.875rem;
+            color: #e91e63; /* Bright pink for error messages */
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Focus styles for input fields */
+        .form-control:focus {
+            border-color: #f06292; /* Light pink focus */
+            box-shadow: 0 0 0 0.2rem rgba(240, 98, 146, 0.25); /* Light pink shadow */
+        }
+    </style>
+
+    <!-- Form Container -->
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Enter Mobile Device Data</h2>
+            </div>
+
+            <form method="POST" action="/submit" class="needs-validation" novalidate>
+                <div class="form-row">
+
+                    <!-- First Column (Left) -->
+                    <div class="col-md-6">
+                        <label for="age" class="form-label">Person Age</label>
+                        <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age" required>
+                        <div class="invalid-feedback">Please enter a valid age.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select class="form-select" id="gender" name="gender" required>
+                            <option selected disabled value="">Choose...</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="invalid-feedback">Please select a gender.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="UserBehaviorClass" class="form-label">User Behavior Class</label>
+                        <input type="text" class="form-control" id="UserBehaviorClass" name="UserBehaviorClass" placeholder="E.g., Casual, Heavy" required>
+                        <div class="invalid-feedback">Please specify the behavior class.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="DeviceModel" class="form-label">Device Model</label>
+                        <input type="text" class="form-control" id="DeviceModel" name="DeviceModel" placeholder="E.g., iPhone 13" required>
+                        <div class="invalid-feedback">Please provide a device model.</div>
+                    </div>
+
+                    <!-- Second Column (Right) -->
+                    <div class="col-md-6">
+                        <label for="OperatingSystem" class="form-label">Operating System</label>
+                        <input type="text" class="form-control" id="OperatingSystem" name="OperatingSystem" placeholder="E.g., iOS 16" required>
+                        <div class="invalid-feedback">Please specify the operating system.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="AppusageTime" class="form-label">App Usage Time (hours/day)</label>
+                        <input type="number" step="0.1" class="form-control" id="AppusageTime" name="AppusageTime" placeholder="E.g., 3.5" required>
+                        <div class="invalid-feedback">Please enter the app usage time in hours per day.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="BatteryDrain" class="form-label">Battery Drain (%)</label>
+                        <input type="number" step="0.1" class="form-control" id="BatteryDrain" name="BatteryDrain" placeholder="E.g., 15.5" required>
+                        <div class="invalid-feedback">Please specify the battery drain percentage.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="ScreenOnTime_hours_per_day" class="form-label">Screen On Time (hours/day)</label>
+                        <input type="number" step="0.1" class="form-control" id="ScreenOnTime_hours_per_day" name="ScreenOnTime_hours_per_day" placeholder="E.g., 5.0" required>
+                        <div class="invalid-feedback">Please provide the screen on time in hours per day.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="NumberofAppsInstalled" class="form-label">Number of Apps Installed</label>
+                        <input type="number" class="form-control" id="NumberofAppsInstalled" name="NumberofAppsInstalled" placeholder="E.g., 50" required>
+                        <div class="invalid-feedback">Please specify the number of installed apps.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="DataUsage_MB_per_day" class="form-label">Data Usage (MB/day)</label>
+                        <input type="number" step="0.1" class="form-control" id="DataUsage_MB_per_day" name="DataUsage_MB_per_day" placeholder="E.g., 500.5" required>
+                        <div class="invalid-feedback">Please enter the data usage in MB per day.</div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="submit-button-container">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

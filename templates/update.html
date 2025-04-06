@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block title %}Update{% endblock %}
+{% block body_class %}Update-page{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Data Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 20px;
+        }
+        form {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid #ddd;
+        }
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 12px;
+            vertical-align: middle;
+        }
+        label {
+            font-weight: 600;
+            color: #333;
+        }
+        input[type="text"], input[type="date"], input[type="radio"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        input[type="radio"] {
+            width: auto;
+            margin-right: 8px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .gender-labels {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .gender-labels input {
+            width: auto;
+        }
+        .gender-labels label {
+            margin: 0;
+        }
+        .form-footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .form-footer small {
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+<form method="POST" action="/update/{{ data.user.id }}" enctype="application/x-www-form-urlencoded">
+  <h1>Add the Data</h1>
+        <table>
+            <tr>
+                <td><label for="id">ID:</label></td>
+                <td><input type="text" id="id" name="id" value="{{ data.user.id }}" required></td>
+            </tr>
+            <tr>
+                <td><label for="age">Age:</label></td>
+                <td><input type="text" id="age" name="age" value="{{ data.user.age }}" required></td>
+            </tr>
+            <tr>
+                <td><label for="gender">Gender:</label></td>
+                <td><input type="text" id="gender" name="gender" value="{{ data.user.gender }}" required></td>
+            </tr>
+             <tr>
+                <td><label for="UserBehaviorClass">User Behavior Class:</label></td>
+                <td><input type="text" id="UserBehaviorClass" name="UserBehaviorClass" value="{{ data.user.UserBehaviorClass }}" required></td>
+            </tr>
+            <tr>
+                <td><label for="DeviceModel">Device Model:</label></td>
+                <td><input type="text" id="DeviceModel" name="DeviceModel" value="{{ data.DeviceModel }}" required></td>
+            </tr>
+            <tr>
+                <td><label for="OperatingSystem">Operating System:</label></td>
+                <td><input type="text" id="OperatingSystem" name="OperatingSystem" value="{{ data.OperatingSystem }}" required></td>
+            </tr>
+            <tr>
+                <td><label for="AppusageTime">App Usage Time:</label></td>
+                <td><input type="text" id="AppusageTime" name="AppusageTime" value="{{ data.AppusageTime }}" required></td>
+            </tr>
+            <tr>
+                <td><label for="BatteryDrain">Battery Drain:</label></td>
+                <td><input type="text" id="BatteryDrain" name="BatteryDrain" value="{{ data.BatteryDrain }}" required></td>
+            </tr>
+            <tr>
+                <td><label for="NumberofAppsInstalled">Number of Apps Installed:</label></td>
+                <td><input type="text" id="NumberofAppsInstalled" name="NumberofAppsInstalled" value="{{ data.NumberofAppsInstalled }}" required></td>
+            </tr>
+            <tr>
+                <td><label for="ScreenOnTime_hours_per_day">Screen On Time (hours per day):</label></td>
+                <td><input type="text" id="ScreenOnTime_hours_per_day" name="ScreenOnTime_hours_per_day" value="{{ data.ScreenOnTime_hours_per_day }}" required></td>
+            </tr>
+
+            <tr>
+                <td><label for="DataUsage_MB_per_day">DataUsage_MB_per_day :</label></td>
+                <td><input type="text" id="DataUsage_MB_per_day" name="DataUsage_MB_per_day" value="{{ data.DataUsage_MB_per_day }}" required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Update">
+                </td>
+            </tr>
+        </table>
+
+        <div class="form-footer">
+            <small>By submitting, you agree to our terms and conditions.</small>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
+
+{% endblock %}

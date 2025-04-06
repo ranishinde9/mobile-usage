@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+
+{% block title %}Graphs{% endblock %}
+{% block body_class %}Graphs-page{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Resetting body margin and padding */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c3e50;
+            color: white;
+            margin: 0;  /* Remove margin */
+            padding: 0; /* Remove padding */
+        }
+
+        /* Removing any margin or padding on the navbar */
+        nav {
+            margin: 0; /* Remove margin */
+            padding: 0; /* Remove padding */
+        }
+
+        /* Title styling */
+        h1 {
+            text-align: center;
+            color: white;
+            margin-top: 0;   /* Remove top margin */
+            padding-top: 0;  /* Remove top padding */
+            margin-bottom: 30px;
+        }
+
+        .chart-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 10px;
+        }
+
+        .chart {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 10px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+            width: 100% !important;
+            height: 90% !important;
+        }
+
+        .chart-title {
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Deep Dive Into Visual Insights</h1>
+<div class="chart-container">
+    <div class="chart"><div class="chart-title">Device Usage by Category</div><canvas id="chart1"></canvas></div>
+    <div class="chart"><div class="chart-title">Operating System Distribution</div><canvas id="chart2"></canvas></div>
+    <div class="chart"><div class="chart-title">App Usage Frequency</div><canvas id="chart3"></canvas></div>
+    <div class="chart"><div class="chart-title">Gender Distribution</div><canvas id="chart4"></canvas></div>
+    <div class="chart"><div class="chart-title">App Category Preferences</div><canvas id="chart5"></canvas></div>
+    <div class="chart"><div class="chart-title">User Behavior Class</div><canvas id="chart6"></canvas></div>
+    <div class="chart"><div class="chart-title">Age Group Usage</div><canvas id="chart7"></canvas></div>
+    <div class="chart"><div class="chart-title">Monthly Internet Usage</div><canvas id="chart8"></canvas></div>
+    <div class="chart"><div class="chart-title">Feature Adoption Rate</div><canvas id="chart9"></canvas></div>
+    <div class="chart"><div class="chart-title">App Features Satisfaction</div><canvas id="chart10"></canvas></div>
+    <div class="chart"><div class="chart-title">Monthly Income Range</div><canvas id="chart11"></canvas></div>
+    <div class="chart"><div class="chart-title">Device Usage by Age Group</div><canvas id="chart12"></canvas></div>
+    <div class="chart"><div class="chart-title">App Usage by Device Type</div><canvas id="chart13"></canvas></div>
+    <div class="chart"><div class="chart-title">Average Daily Screen Time</div><canvas id="chart14"></canvas></div>
+    <div class="chart"><div class="chart-title">Data Usage Comparison</div><canvas id="chart15"></canvas></div>
+</div>
+
+<script>
+    function generateRandomData(count, max) {
+        return Array.from({ length: count }, () => Math.floor(Math.random() * max) + 1);
+    }
+
+    // Semi-Transparent Colors for All Graphs (distinct and soft)
+    const graphColors = [
+        'rgba(255, 99, 132, 0.6)', // Red
+        'rgba(54, 162, 235, 0.6)', // Blue
+        'rgba(75, 192, 192, 0.6)', // Teal
+        'rgba(153, 102, 255, 0.6)', // Purple
+        'rgba(255, 159, 64, 0.6)', // Orange
+        'rgba(0, 204, 255, 0.6)', // Light Blue
+        'rgba(204, 0, 255, 0.6)', // Magenta
+        'rgba(255, 165, 0, 0.6)', // Orange
+        'rgba(0, 255, 102, 0.6)', // Green
+        'rgba(255, 51, 255, 0.6)', // Pink
+        'rgba(204, 255, 204, 0.6)', // Light Green
+        'rgba(255, 102, 102, 0.6)', // Light Red
+        'rgba(102, 102, 255, 0.6)', // Light Blue
+        'rgba(204, 204, 0, 0.6)', // Yellow
+        'rgba(128, 128, 128, 0.6)'  // Grey
+    ];
+
+    // Semi-Transparent Colors for Pie and Doughnut Charts (distinct)
+    const pieAndDoughnutColors = [
+        'rgba(244, 67, 54, 0.6)',  // Red
+        'rgba(33, 150, 243, 0.6)', // Blue
+        'rgba(0, 188, 212, 0.6)',  // Cyan
+        'rgba(255, 87, 34, 0.6)',  // Deep Orange
+        'rgba(76, 175, 80, 0.6)',  // Green
+        'rgba(156, 39, 176, 0.6)', // Purple
+        'rgba(255, 235, 59, 0.6)', // Yellow
+        'rgba(233, 30, 99, 0.6)',  // Pink
+        'rgba(255, 193, 7, 0.6)',  // Amber
+        'rgba(156, 204, 255, 0.6)',// Light Blue
+        'rgba(100, 181, 246, 0.6)',// Light Blue
+        'rgba(255, 193, 7, 0.6)',  // Yellow
+        'rgba(213, 50, 50, 0.6)',  // Red
+        'rgba(255, 139, 5, 0.6)',  // Orange
+        'rgba(255, 229, 2, 0.6)'   // Light Yellow
+    ];
+
+    const charts = [
+        { id: 'chart1', type: 'bar', labels: ['Smartphones', 'Tablets', 'Laptops', 'Desktops'], data: generateRandomData(4, 100), label: 'Device Usage by Category' },
+        { id: 'chart2', type: 'bar', labels: ['Android', 'iOS'], data: generateRandomData(3, 100), label: 'Operating System Distribution' },
+        { id: 'chart3', type: 'line', labels: ['Morning', 'Afternoon', 'Evening', 'Night'], data: generateRandomData(4, 100), label: 'App Usage Frequency', stepped: true },
+        { id: 'chart4', type: 'bar', labels: ['Male', 'Female'], data: generateRandomData(2, 100), label: 'Gender Distribution', indexAxis: 'y' },
+        { id: 'chart5', type: 'bar', labels: ['Gaming', 'Social Media', 'Productivity', 'Streaming', 'Education', 'Shopping'], data: generateRandomData(6, 100), label: 'App Category Preferences', stacked: true },
+        { id: 'chart6', type: 'polarArea', labels: ['Casual', 'Frequent', 'Heavy'], data: generateRandomData(3, 100), label: 'User Behavior Class' },
+        { id: 'chart7', type: 'line', labels: ['10-20', '21-30', '31-40', '41-50'], data: generateRandomData(4, 100), label: 'Age Group Usage' },
+        { id: 'chart8', type: 'bar', labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], data: generateRandomData(12, 100), label: 'Monthly Internet Usage', indexAxis: 'y' },
+        { id: 'chart9', type: 'scatter', data: [{ x: 10, y: 20 }, { x: 15, y: 25 }, { x: 20, y: 30 }], label: 'Feature Adoption Rate' },
+        { id: 'chart10', type: 'bar', labels: ['Ease of Use', 'Performance', 'Design'], data: [30, 50, 70], label: 'App Features Satisfaction' },
+        { id: 'chart11', type: 'polarArea', labels: ['<20k', '20-50k', '50-100k', '>100k'], data: generateRandomData(4, 100), label: 'Monthly Income Range' },
+        { id: 'chart12', type: 'bar', labels: ['10-20', '21-30', '31-40', '41-50'], data: generateRandomData(4, 100), label: 'Device Usage by Age Group' },
+        { id: 'chart13', type: 'bubble', data: [{ x: 10, y: 20, r: 5 }, { x: 15, y: 25, r: 10 }, { x: 20, y: 30, r: 15 }], label: 'App Usage by Device Type' },
+        { id: 'chart14', type: 'line', labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], data: generateRandomData(7, 100), label: 'Average Daily Screen Time' },
+        { id: 'chart15', type: 'scatter', data: [{ x: 5, y: 10 }, { x: 10, y: 15 }, { x: 15, y: 20 }], label: 'Data Usage Comparison' }
+    ];
+
+    const commonOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            x: { ticks: { color: '#fff' }, grid: { display: false } },
+            y: { ticks: { color: '#fff', beginAtZero: true }, grid: { display: false } },
+        },
+        plugins: { legend: { labels: { color: 'white' } } },
+        elements: {
+            point: { radius: 8 }, // Increased dot size
+        },
+    };
+
+    charts.forEach((chart, index) => {
+        const options = { ...commonOptions };
+        if (chart.stepped) options.elements = { line: { stepped: true } };
+        if (chart.stacked) options.scales = { x: { stacked: true }, y: { stacked: true } };
+        if (chart.indexAxis) options.indexAxis = chart.indexAxis;
+
+        new Chart(document.getElementById(chart.id), {
+            type: chart.type,
+            data: {
+                labels: chart.labels || [],
+                datasets: [chart.datasets || {
+                    label: chart.label,
+                    data: chart.data,
+                    backgroundColor: graphColors[index % graphColors.length],
+                    borderColor: graphColors[index % graphColors.length].replace('0.6', '1'),
+                    borderWidth: 1,
+                    barPercentage: 0.5, // Reducing bar thickness
+                    categoryPercentage: 0.7, // Spacing between bars
+                }],
+            },
+            options,
+        });
+    });
+
+</script>
+
+</body>
+</html>
+
+{% endblock %}

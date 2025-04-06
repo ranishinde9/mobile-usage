@@ -1,0 +1,133 @@
+/* General Body Styling */
+html, body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%; /* Full height for body */
+    margin: 0; /* Remove default margin */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+}
+
+/* Full Page Background Image */
+body {
+    background-image: url("{{ url_for('static', filename='images/11.png') }}");
+    background-size: cover; /* Ensure the image fully covers the viewport */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; /* Make the background image fixed while scrolling */
+    height: 100%; /* Make sure the body takes full height */
+    margin: 0; /* Remove any default margin */
+    display: flex;
+    flex-direction: column; /* Ensure the content grows */
+}
+
+/* If the above doesn't work, try setting the background in an inline style as fallback: */
+.background-image {
+    background-image: url("{{ url_for('static', filename='images/11.png') }}");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    position: absolute; /* Ensure it covers the entire viewport */
+    top: 0;
+    left: 0;
+}
+
+/* Content Overlay */
+.content-overlay {
+    position: relative;
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: Darken the background for text visibility */
+    padding: 40px;
+    font-size: 1.5rem;
+    z-index: 10; /* Ensure the content is on top of the background */
+}
+
+/* Main Content Styling */
+.content {
+    flex: 1; /* This will push the footer to the bottom when content is small */
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+    margin-top: 70px; /* Add space for the fixed navbar */
+}
+
+/* Navbar Styling with Fixed Position */
+.navbar {
+    position: fixed; /* Keep navbar at the top */
+    top: 0;
+    left: 0;
+    right: 0; /* Ensure it spans the entire width */
+    background: linear-gradient(45deg, #1B2970, #124187, #733E86, #AF519B, #F46AB8);
+    padding: 10px;
+    z-index: 10;
+    width: 100%;
+    box-sizing: border-box; /* Include padding in the width calculation */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0 20px;
+}
+
+.navbar a {
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 15px; /* Space around each link */
+    margin: 0 10px; /* Add space between links */
+    border-radius: 5px; /* Optional rounded corners */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly lighten the link on hover */
+}
+
+.navbar a.active {
+    background-color: #F46AB8; /* Highlight active page with the last pink color */
+    color: white;
+}
+
+/* Footer Styling with Refined Gradient */
+footer {
+    background: linear-gradient(45deg, #1B2970, #124187, #733E86, #AF519B, #F46AB8); /* Custom gradient */
+    color: white; /* Text color */
+    padding: 5px; /* Space inside the footer */
+    text-align: center; /* Center align text horizontally */
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    font-size: 15px; /* Font size for footer text */
+    z-index: 10;
+    width: 100%; /* Ensure full width */
+    box-sizing: border-box; /* Include padding in the width calculation */
+    position: relative; /* Ensure footer stays at the bottom */
+}
+
+/* Content Overlay Positioning for Centered Text */
+.content-overlay {
+    position: absolute; /* Position it over the background */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Exact center alignment */
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: Darken the background for better contrast */
+    padding: 20px;
+    font-size: 1.5rem;
+    z-index: 10; /* Ensure the content is on top of the background */
+}
+
+.content-overlay h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.content-overlay p {
+    font-size: 1.2rem;
+}

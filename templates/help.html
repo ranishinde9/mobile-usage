@@ -1,0 +1,254 @@
+{% extends "base.html" %}
+
+{% block title %}Help{% endblock %}
+{% block body_class %}Help-page{% endblock %}
+
+{% block content %}
+<div class="help-container">
+    <!-- Main Heading -->
+    <h1 class="help-heading">Welcome to the Help Center</h1>
+    <p class="help-description">Find answers to common questions and learn how to get the most out of your experience with Mindful Screens.</p>
+
+    <!-- Introduction Image -->
+    <div class="intro-image">
+
+    </div>
+
+    <!-- Getting Started Section -->
+    <div class="card help-card">
+        <div class="card-body">
+            <h2 class="card-title">Getting Started</h2>
+            <p class="card-text">Follow these steps to begin your journey with Mindful Screens and access mobile device usage insights:</p>
+            <ul>
+                <li><strong>Sign Up:</strong> Create an account to start exploring personalized insights.</li>
+                <li><strong>Add Data:</strong> Contribute data to the platform and enhance the community dataset.</li>
+                <li><strong>Explore Insights:</strong> Analyze mobile device trends using our interactive visual tools.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Platform Features Section -->
+    <div class="card help-card">
+        <div class="card-body">
+            <h2 class="card-title">Platform Features</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <img src="{{ url_for('static', filename='images/dv.png') }}" alt="Feature 1" class="feature-icon">
+                    <p><strong>Data Visualizations:</strong> Create custom charts and graphs to analyze mobile usage patterns.</p>
+                </div>
+                <div class="feature-item">
+                    <img src="{{ url_for('static', filename='images/mu.png.png') }}" alt="Feature 2" class="feature-icon">
+                    <p><strong>Mobile Usage Analytics:</strong> Understand user behavior, app usage, and screen time.</p>
+                </div>
+                <div class="feature-item">
+                    <img src="{{ url_for('static', filename='images/ub.png') }}" alt="Feature 3" class="feature-icon">
+                    <p><strong>User Behavior Tracking:</strong> Gain insights into touch patterns and device interactions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="card help-card">
+        <div class="card-body">
+            <h2 class="card-title">Frequently Asked Questions (FAQ)</h2>
+
+            <div class="faq-item">
+                <button class="faq-button" onclick="toggleAnswer(1)">What is Mindful Screens?</button>
+                <div class="faq-answer" id="answer1">
+                    <p>Mindful Screens is a platform for understanding and analyzing mobile device usage patterns and user behavior. It helps users track their digital habits, screen time, and app usage.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-button" onclick="toggleAnswer(2)">How do I contribute data?</button>
+                <div class="faq-answer" id="answer2">
+                    <p>You can contribute data by signing up on the platform and submitting your mobile usage information through the "Add Data" section. Your data will help improve the insights provided to all users.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-button" onclick="toggleAnswer(3)">Can I view my own data insights?</button>
+                <div class="faq-answer" id="answer3">
+                    <p>Yes, once you have added your data, you can access personalized insights related to your mobile usage. You can explore various visualizations such as screen time and app usage patterns.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-button" onclick="toggleAnswer(4)">Is my data safe on the platform?</button>
+                <div class="faq-answer" id="answer4">
+                    <p>Your data is protected with the latest security protocols. We ensure that all user data is anonymized and encrypted to maintain privacy and security.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-button" onclick="toggleAnswer(5)">How can I delete my data?</button>
+                <div class="faq-answer" id="answer5">
+                    <p>If you wish to delete your data, you can do so by visiting the "Manage Data" section in your profile settings. There, you can choose to remove your data from the platform permanently.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Need More Help Section -->
+    <div class="card help-card">
+        <div class="card-body">
+            <h2 class="card-title">Need More Help?</h2>
+            <p>If you have more questions or need assistance, here's how you can get in touch with us:</p>
+            <ul>
+                <li><strong>Email Support:</strong> For issues related to your account or platform functionality, feel free to contact our support team at <strong>support@mindfulscreens.com</strong>.</li>
+                <li><strong>Community Forum:</strong> Join the Mindful Screens community to connect with other users and share insights or tips.</li>
+                <li><strong>Contact Form:</strong> Use the contact form available on the website for specific inquiries or requests.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Internal CSS -->
+<style>
+    /* General Container */
+    .help-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px;
+        background-color: #f9f9f9;
+        color: #333;
+    }
+
+    /* Heading */
+    .help-heading {
+        font-size: 2.8rem;
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    .help-description {
+        font-size: 1.2rem;
+        color: #7f8c8d;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    /* Card Styles */
+    .help-card {
+        margin-bottom: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: none;
+        background-color: #fff;
+        color: #34495e;
+    }
+
+    .card-title {
+        font-size: 1.9rem;
+        font-weight: bold;
+        color: #34495e;
+        margin-bottom: 15px;
+    }
+
+    .card-text {
+        font-size: 1.1rem;
+        color: #7f8c8d;
+    }
+
+    /* Feature Section */
+    .feature-list {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .feature-item {
+        width: 30%;
+        text-align: center;
+    }
+
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+
+    /* FAQ Section */
+    .faq-item {
+        margin-bottom: 15px;
+    }
+
+    .faq-button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        text-align: left;
+        font-size: 1.2rem;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .faq-answer {
+        display: none;
+        padding: 10px;
+        background-color: #f1f1f1;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+
+    .faq-button:hover {
+        background-color: #2980b9;
+    }
+
+    /* List Items */
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+
+    li strong {
+        color: #3498db;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .help-heading {
+            font-size: 2.2rem;
+        }
+
+        .card-title {
+            font-size: 1.7rem;
+        }
+
+        .help-description {
+            font-size: 1rem;
+        }
+
+        .feature-list {
+            flex-direction: column;
+        }
+
+        .feature-item {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }
+</style>
+
+<!-- JavaScript for FAQ Toggle -->
+<script>
+    function toggleAnswer(id) {
+        var answer = document.getElementById('answer' + id);
+        if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+        } else {
+            answer.style.display = 'block';
+        }
+    }
+</script>
+
+{% endblock %}
