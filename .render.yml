@@ -1,7 +1,7 @@
 services:
  - type: web
  name: my-flask-app
- env: python
+ env: docker
  plan: free
  branch: main
  buildCommand: "pip install -r requirements.txt"
